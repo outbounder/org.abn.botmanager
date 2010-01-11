@@ -1,0 +1,19 @@
+<context>
+	<operations>
+		<start>
+			<path>org.abn.botManager.operation.Start</path>
+		</start>
+		<kill>
+			<path>org.abn.botManager.operation.Stop</path>
+		</kill>
+	</operations>
+	<xmpp>
+		<username></username>
+		<password></password>
+		<server></server>
+	</xmpp>
+	<monitor>
+		<jid></jid>
+		<jid></jid>
+	</monitor>
+</context>
