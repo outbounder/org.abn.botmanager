@@ -1,0 +1,2 @@
+To be able to compile this haxe/neko application you'll need also the haxe port 
+of the abn API lib located at http://github.com/outbounder/org.abn.haxe
