@@ -6,6 +6,7 @@ import org.abn.bot.operation.BotOperation;
 import org.abn.botManager.BotManager;
 import org.abn.neko.xmpp.XMPPContext;
 import org.abn.botManager.Main;
+import org.abn.uberTora.UberToraContext;
 
 import neko.Web;
 import xmpp.Message;
@@ -20,13 +21,15 @@ class Start extends BotOperation
 		if (this.botContext.has("started"))
 			return "already started";
 			
+		this.httpThread = Thread.current();
+		
 		this.botContext.openXMPPConnection(onConnected, onConnectFailed, onDisconnected);
 		
-		Web.cacheModule(Main.handleRequests);
+		UberToraContext.redirectRequests(Main.handleRequests);
 		this.botContext.set("started", true);
 		
-		this.httpThread = Thread.current();
 		var xmppConnectResponse:String = Thread.readMessage(true);
+		
 		var botsStartResponse:String = cast(this.botContext,BotManager).startAllBots();
 		return "<response><xmpp>" + xmppConnectResponse + "</xmpp><bots>" + botsStartResponse + "</bots></response>";
 	}
